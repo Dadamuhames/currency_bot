@@ -14,5 +14,5 @@ PROXY_URL = 'socks5://proxy.server:3128'
 
 
 # init main bot
-bot = Bot(token=BOT_TOKEN, parse_mode="markdown")
+bot = Bot(token=BOT_TOKEN, parse_mode="markdown", proxy=PROXY_URL)
 dp = Dispatcher(bot)
