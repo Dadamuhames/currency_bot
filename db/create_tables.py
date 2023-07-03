@@ -16,10 +16,10 @@ def create_users_table():
 # create groups table
 def create_groups_table():
     query = """
-        CREATE TABLE IF NOT EXISTS groups (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            chat_id VARCHAR(255) NOT NULL UNIQUE,
-            name VARCHAR(255) NOT NULL 
+        CREATE TABLE IF NOT EXISTS `groups` (
+            `id` INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+            `chat_id` VARCHAR(255) NOT NULL UNIQUE,
+            `name` VARCHAR(255) NOT NULL 
         )
     """
 
