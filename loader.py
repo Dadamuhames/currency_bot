@@ -9,7 +9,7 @@ load_dotenv()
 # bot token from env
 BOT_TOKEN=os.environ.get('BOT_TOKEN')
 logging.basicConfig(level=logging.INFO)
-PROXY_URL = 'socks5://proxy.server:3128'
+PROXY_URL = "http://proxy.server:3128"
 
 
 
