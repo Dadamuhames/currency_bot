@@ -4,7 +4,7 @@ from .db_config import mycursor
 # create users table
 def create_users_table():
     query = """
-        CREATE TABLE IF NOT EXISTS "users" (
+        CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             chat_id VARCHAR(255) NOT NULL UNIQUE
         )
@@ -16,7 +16,7 @@ def create_users_table():
 # create groups table
 def create_groups_table():
     query = """
-        CREATE TABLE IF NOT EXISTS "groups" (
+        CREATE TABLE IF NOT EXISTS groups (
             id INT AUTO_INCREMENT PRIMARY KEY,
             chat_id VARCHAR(255) NOT NULL UNIQUE,
             name VARCHAR(255) NOT NULL 
