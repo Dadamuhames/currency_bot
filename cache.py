@@ -7,7 +7,7 @@ load_dotenv()
 
 
 # redis for debug
-if os.environ.get("DEBUG"):
+if os.environ.get("DEBUG") == 'True':
     _cache = redis.Redis(host='localhost', port=6379, decode_responses=True)
 else:
     # redis for production
