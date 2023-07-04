@@ -2,8 +2,7 @@ import json
 from db import User
 
 class UserSession:
-    def __init__(self, cursor, user_id):
-        self.cursor = cursor
+    def __init__(self, user_id):
         self.user_id = user_id
         self.user_model = User()
 

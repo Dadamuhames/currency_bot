@@ -1,4 +1,4 @@
-from db import mycursor, User
+from db import User
 from user_session import UserSession
 from utils import get_currencies_from_list
 from loader import bot
@@ -34,7 +34,7 @@ async def broadcast_saveds():
         for user in users:
             chat_id = user[0]
 
-            session = UserSession(mycursor, chat_id)    
+            session = UserSession(chat_id)    
             lang = session.get_or_create().get('language', '')        
 
             codes = session.get_currencies()

@@ -14,7 +14,7 @@ class LanguageRequired(BaseMiddleware):
     
     # on message
     async def on_process_message(self, message: types.Message, data: dict):
-        session = UserSession(mycursor, message.chat.id).get_or_create()
+        session = UserSession(message.chat.id).get_or_create()
 
         if not session.get("language"):
             reply_keyboard = language_keyboard()
@@ -28,7 +28,7 @@ class LanguageRequired(BaseMiddleware):
         
     # on callback
     async def on_process_callback_query(self, call: types.CallbackQuery, data: dict):
-        session = UserSession(mycursor, call.from_user.id).get_or_create()
+        session = UserSession(call.from_user.id).get_or_create()
 
         call_type = json.loads(call.data)
 
