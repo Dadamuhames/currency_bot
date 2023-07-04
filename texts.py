@@ -46,3 +46,44 @@ there_is_no_info = {
     "ru": "Об этой валюте пока еще информации нет",
     "uz": "Ushbu valyuta haqida hech qanday ma'lumot yo'q"
 } 
+
+
+error_text = {
+    "ru": "Ошибка! Попробуйте еще раз!",
+    "uz": "Xatolik yuz berdi! Yana bir bor urinib ko `ring!"
+}
+
+language_updated = {
+    "ru": "Язык изменен на Русский🇷🇺",
+    "uz": "Til O'zbek tiliga o'zgartirildi🇺🇿"
+}
+
+
+all_currs = {
+    "ru": "Все валюты🌐",
+    "uz": "Barcha valyutalar🌐"
+}
+
+
+saved_btn = {
+    "ru": "Избранные💾",
+    "uz": "Saqlangan💾"
+}
+
+
+updates_off = {
+    "ru": "Уведомления об обновлениях отключены🔇\nУведомления можно снова включить командой /updatesOn",
+    "uz": "Yangilash bildirishnomalari oʻchirilgan🔇 \nBildirishnomalarni /updatesOn buyrug'i bilan qayta yoqish mumkin"
+}
+
+
+updates_on = {
+    "ru": "Уведомления об обновлениях включены🔈\nУведомления можно отключить командой /updatesOff",
+    "uz": "Yangilash bildirishnomalari yoqilgan🔈\nBildirishnomalarni /updatesOff off buyrug'i bilan o'chirib qo'yish mumkin"
+}
+
+
+there_is_updates = {
+    "ru": """Обновления по сохраненным вами валютам! 📢 \nОбновления будут приходить каждый день в 14:00! 🕒 \nОт обновлений можно отказатьсы комадой /updatesOff""",
+    "uz": """Siz saqlagan valyutalar boʻyicha yangilanishlar! 📢 \nYangilanishlar har kuni soat 14:00 da keladi! 🕒 \nYangilanishlarni /updatesOff buyrugʻi bilan bekor qilish mumkin."""
+}

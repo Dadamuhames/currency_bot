@@ -1,52 +1,65 @@
 import json
-
+from db import User
 
 class UserSession:
-    def __init__(self, _cache, user_id):
-        self._cache = _cache
+    def __init__(self, cursor, user_id):
+        self.cursor = cursor
         self.user_id = user_id
+        self.user_model = User()
 
     # get session or create if there is no session yet
     def get_or_create(self):
-        curent_session = self._cache.get(self.user_id)
-        
-        if not curent_session:
-            curent_session = {
-                "language": None,
-                "currencies": [],
-            }
-            self._cache.set(self.user_id, json.dumps(curent_session))
-        else:
-            curent_session = json.loads(curent_session)
+        curent_session = {
+            "language": None,
+            "currencies": []
+        }
+        try:
+            curent_user = self.user_model.single(self.user_id)
+            
+            if not curent_user:
+                curent_user = self.user_model.create(self.user_id)
+
+            curent_session['language'] = curent_user[2]
+            curent_session['currencies'] = json.loads(curent_user[3]) if curent_user[3] else []
+        except Exception as e:
+            print("ERROR!", e)
 
         return curent_session
     
     # add currency to session
     def add_currency(self, currency):
-        curent_session = self.get_or_create()
-        
-        currencies_list = curent_session.get("currencies", [])
-        
-        if currency not in currencies_list:
-            currencies_list.append(currency)
+        try:
+            curent_session = self.get_or_create()
+            
+            currencies_list = curent_session.get("currencies", [])
+            
+            if currency not in currencies_list:
+                currencies_list.append(currency)
 
-        curent_session["currencies"] = currencies_list
-        self._cache.set(self.user_id, json.dumps(curent_session))
+            self.user_model.update_currencies(self.user_id, json.dumps(currencies_list))
+
+        except Exception as e:
+            print('ERROR!', e)
+            raise e
 
         return curent_session
 
 
     # delete currency
     def delete_currency(self, currency):
-        curent_session = self.get_or_create()
+        try:
+            curent_session = self.get_or_create()
 
-        currencies_list = curent_session.get("currencies", [])
+            currencies_list = curent_session.get("currencies", [])
 
-        if currency in currencies_list:
-            currencies_list.remove(currency)
+            if currency in currencies_list:
+                currencies_list.remove(currency)
 
-        curent_session["currencies"] = currencies_list
-        self._cache.set(self.user_id, json.dumps(curent_session))
+            self.user_model.update_currencies(self.user_id, json.dumps(currencies_list))
+
+        except Exception as e:
+            print("ERROR!", e)
+            raise e
 
         return curent_session
     
@@ -80,10 +93,11 @@ class UserSession:
 
     # set language
     def set_language(self, lang):
-        curent_session = self.get_or_create()
+        try:
+            self.user_model.update_lang(self.user_id, lang)
 
-        curent_session['language'] = lang
+            return True
+        except Exception as e:
+            print("ERROR!", e)
 
-        self._cache.set(self.user_id, json.dumps(curent_session))
-
-        return curent_session
+        return False

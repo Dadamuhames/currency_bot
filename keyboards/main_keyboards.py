@@ -1,12 +1,15 @@
 from aiogram import types
 import json
 from flags_dict import FLAGS as flags
-
+import texts
 
 # main simple keyboard
-def currencies_simple_keyboard():
+def currencies_simple_keyboard(lang):
     reply_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     default_currencies = ['USD', 'EUR', "RUB"]
+
+    saved_text = texts.saved_btn.get(lang)
+    all_text = texts.all_currs.get(lang)
 
     first_row = []
 
@@ -22,8 +25,8 @@ def currencies_simple_keyboard():
     reply_keyboard.row(*first_row)
 
     second_row = [
-        types.KeyboardButton(text='Все валюты🌐'),
-        types.KeyboardButton(text='Избранные💾'),
+        types.KeyboardButton(text=all_text),
+        types.KeyboardButton(text=saved_text),
     ]
 
     reply_keyboard.row(*second_row)
@@ -32,8 +35,9 @@ def currencies_simple_keyboard():
 
 
 # all currencies
-def currencies_keyboard(currensies):
+def currencies_keyboard(currensies, lang):
     reply_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    saved_text = texts.saved_btn.get(lang)
 
     for i in range(0, len(currensies), 2):
         row = []
@@ -60,7 +64,7 @@ def currencies_keyboard(currensies):
 
         reply_keyboard.row(*row)
     
-    last_row = [types.KeyboardButton(text='Избранные💾')]
+    last_row = [types.KeyboardButton(text=saved_text)]
 
     reply_keyboard.row(*last_row)
 
@@ -70,11 +74,12 @@ def currencies_keyboard(currensies):
 
 
 # simple keyboard
-def simple_keyboard():
+def simple_keyboard(lang):
     reply_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    text = texts.all_currs.get(lang)
 
     rows = [
-            types.KeyboardButton(text='Все валюты🌐'),
+            types.KeyboardButton(text=text),
             # types.KeyboardButton(text='Назад🔙'),
         ] 
 
@@ -84,12 +89,14 @@ def simple_keyboard():
 
 
 # all and saved
-def all_and_saved_keyboard():
+def all_and_saved_keyboard(lang):
     reply_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    saved_text = texts.saved_btn.get(lang)
+    all_text = texts.all_currs.get(lang)
 
     row = [
-        types.KeyboardButton(text='Все валюты🌐'),
-        types.KeyboardButton(text='Избранные💾'),
+        types.KeyboardButton(text=all_text),
+        types.KeyboardButton(text=saved_text),
     ]
 
     reply_keyboard.row(*row) 

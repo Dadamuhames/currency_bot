@@ -3,7 +3,6 @@ from aiogram import types
 import json
 from loader import *
 from user_session import UserSession
-from cache import _cache
 from flags_dict import FLAGS as flags
 
 

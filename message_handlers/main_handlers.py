@@ -3,7 +3,6 @@ from aiogram import types
 from aiogram.dispatcher.filters import Text
 from filters import *
 from keyboards import *
-from cache import _cache
 from user_session import UserSession
 from utils import *
 import texts
@@ -12,10 +11,11 @@ import texts
 # all currencies
 @dp.message_handler(Text(equals="Все валюты🌐"))
 async def all_currencies(message: types.Message, session: UserSession, session_data: dict):
+    lang = session_data.get("language")
     currencies = await get_all_currs()
-    reply_markup = currencies_keyboard(currencies)
+    reply_markup = currencies_keyboard(currencies, lang)
 
-    text = texts.choose_curr.get(session_data.get("language"))
+    text = texts.choose_curr.get(lang)
 
     await message.answer(text, reply_markup=reply_markup)
 
@@ -38,7 +38,7 @@ async def saved(message: types.Message, session: UserSession, session_data: dict
             await message.answer(text=text, reply_markup=reply_keyboard)
 
     else:
-        reply_keyboard = simple_keyboard()
+        reply_keyboard = simple_keyboard(lang)
 
         text = texts.there_is_no_saved.get(lang)
         await message.answer(text=text, reply_markup=reply_keyboard)
@@ -48,14 +48,20 @@ async def saved(message: types.Message, session: UserSession, session_data: dict
 # currency message handler
 @dp.message_handler(currency_filter)
 async def currency_info(message: types.Message, session: UserSession, session_data: dict):
-    code = message.text[:-2]
+
+    if len(message.text) == 5:
+        code = message.text[:-2]
+    else:
+        code = message.text
+
+
     lang = session_data.get("language")
 
     currency = await get_currency(code)
 
     if currency is None:
         text = texts.there_is_no_info.get(lang)
-        reply_keyboard = currencies_simple_keyboard()
+        reply_keyboard = currencies_simple_keyboard(lang)
 
         await message.answer(text, reply_markup=reply_keyboard)
 

@@ -4,9 +4,12 @@ from .db_config import mycursor
 # create users table
 def create_users_table():
     query = """
-        CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            chat_id VARCHAR(255) NOT NULL UNIQUE
+        CREATE TABLE IF NOT EXISTS `users` (
+            `id` INT AUTO_INCREMENT PRIMARY KEY,
+            `chat_id` VARCHAR(255) NOT NULL UNIQUE,
+            `language` VARCHAR(2) DEFAULT NULL,
+            `currencies` JSON DEFAULT NULL,
+            `updates` BOOLEAN DEFAULT 1
         )
     """
 
