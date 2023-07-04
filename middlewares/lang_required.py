@@ -5,7 +5,6 @@ from keyboards import language_keyboard
 import texts
 from loader import bot
 from aiogram.dispatcher.handler import CancelHandler, current_handler
-from db import mycursor
 import json
 
 
