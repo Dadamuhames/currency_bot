@@ -2,26 +2,15 @@ import requests
 from datetime import datetime
 
 
-BASE_URl = "https://cbu.uz/ru/arkhiv-kursov-valyut/json"
+BASE_URl = "https://gh-pinned-repos-5l2i19um3.vercel.app/"
 PROXY = {
     "https": "https://proxy.server:3128"
 }
 
 
-# get string date
-def get_now():
-    now = datetime.now()
-
-    date_string = now.strftime("%Y-%m-%d")
-
-    return date_string
-
-
 # get all currencies 
 async def get_all_currs():
-    date_string = get_now()
-
-    response = requests.get(BASE_URl + f"/all/{date_string}", proxies=PROXY)
+    response = requests.get(BASE_URl + f"/currencies/", proxies=PROXY)
 
     if response.status_code != 200:
         return None
@@ -31,14 +20,13 @@ async def get_all_currs():
     except:
         return None
 
-    return response
+    return response['result']
 
 
 # get single currency
 async def get_currency(code):
-    date_string = get_now()
 
-    response = requests.get(BASE_URl + f"/{code}/{date_string}", proxies=PROXY)
+    response = requests.get(BASE_URl + f"/currencies/{code}", proxies=PROXY)
 
 
     if response.status_code != 200:
@@ -47,13 +35,16 @@ async def get_currency(code):
     try:
         response = response.json()
 
-        if isinstance(response, list):
+        if isinstance(response, dict):
+            response = response['result']
+
+        if isinstance(response, dict):
             response = response[0]
 
     except:
         return None
 
-    return response  
+    return response
 
 
 # get currencies by list
@@ -67,3 +58,5 @@ async def get_currencies_from_list(codes: list):
             results.append(cur_info)
 
     return results
+
+    # https://gh-pinned-repos-5l2i19um3.vercel.app/currencies
