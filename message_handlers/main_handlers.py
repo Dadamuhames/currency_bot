@@ -9,7 +9,7 @@ import texts
 
 
 # all currencies
-@dp.message_handler(Text(equals="Все валюты🌐"))
+@dp.message_handler(Text(equals=["Все валюты🌐", "Barcha valyutalar🌐"]))
 async def all_currencies(message: types.Message, session: UserSession, session_data: dict):
     lang = session_data.get("language")
     currencies = await get_all_currs()

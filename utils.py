@@ -2,7 +2,7 @@ import requests
 from datetime import datetime
 
 
-BASE_URl = "https://gh-pinned-repos-5l2i19um3.vercel.app/"
+BASE_URl = "https://gh-pinned-repos-5l2i19um3.vercel.app"
 PROXY = {
     "http": "http://proxy.server:3128"
 }
@@ -10,17 +10,17 @@ PROXY = {
 
 # get all currencies 
 async def get_all_currs():
-    response = requests.get(BASE_URl + f"/currencies/", proxies=PROXY)
+    response = requests.get(BASE_URl + f"/currencies", proxies=PROXY)
 
     if response.status_code != 200:
         return None
     
     try:
-        response = response.json()
+        response = response.json()['result']
     except:
         return None
 
-    return response['result']
+    return response
 
 
 # get single currency
