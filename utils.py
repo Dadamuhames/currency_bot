@@ -38,7 +38,7 @@ async def get_currency(code):
         if isinstance(response, dict):
             response = response['result']
 
-        if isinstance(response, dict):
+        if isinstance(response, list):
             response = response[0]
 
     except:
