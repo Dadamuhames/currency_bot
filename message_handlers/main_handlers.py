@@ -22,7 +22,7 @@ async def all_currencies(message: types.Message, session: UserSession, session_d
 
 
 # saved
-@dp.message_handler(Text(equals="Избранные💾"))
+@dp.message_handler(Text(equals=["Избранные💾", "Saqlangan💾"]))
 async def saved(message: types.Message, session: UserSession, session_data: dict):
     curency_codes = session_data.get("currencies", [])
     curencies = await get_currencies_from_list(curency_codes)
