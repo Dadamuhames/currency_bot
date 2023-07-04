@@ -20,6 +20,16 @@ async def all_currencies(message: types.Message, session: UserSession, session_d
     await message.answer(text, reply_markup=reply_markup)
 
 
+# main menu
+@dp.message_handler(Text(equals=["Меню📄", "Menu📄"]))
+async def menu(message: types.Message, session: UserSession, session_data: dict):
+    lang = session_data.get("language")
+
+    reply_keyboard = currencies_simple_keyboard(lang)
+
+    await message.answer(texts.start_text.get(lang), reply_markup=reply_keyboard)
+
+
 
 # saved
 @dp.message_handler(Text(equals=["Избранные💾", "Saqlangan💾"]))

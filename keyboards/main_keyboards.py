@@ -38,11 +38,16 @@ def currencies_simple_keyboard(lang):
 def currencies_keyboard(currensies, lang):
     reply_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     saved_text = texts.saved_btn.get(lang)
+    menu_text = texts.menu_text.get(lang)
 
     for i in range(0, len(currensies), 2):
         row = []
 
         code = currensies[i]['Ccy']
+
+        if code == 'XDR':
+            continue
+
         flag = flags.get(code, '')
         text = f"{code}{flag}"
 
@@ -52,6 +57,10 @@ def currencies_keyboard(currensies, lang):
 
         try:
             code = currensies[i+1]['Ccy']
+
+            if code == 'XDR':
+                continue
+
             flag = flags.get(code, '')
             text = f"{code}{flag}"
 
@@ -64,7 +73,7 @@ def currencies_keyboard(currensies, lang):
 
         reply_keyboard.row(*row)
     
-    last_row = [types.KeyboardButton(text=saved_text)]
+    last_row = [types.KeyboardButton(text=saved_text), types.KeyboardButton(text=menu_text)]
 
     reply_keyboard.row(*last_row)
 

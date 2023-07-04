@@ -87,3 +87,10 @@ there_is_updates = {
     "ru": """Обновления по сохраненным вами валютам! 📢 \nОбновления будут приходить каждый день в 14:00! 🕒 \nОт обновлений можно отказатьсы комадой /updatesOff""",
     "uz": """Siz saqlagan valyutalar boʻyicha yangilanishlar! 📢 \nYangilanishlar har kuni soat 14:00 da keladi! 🕒 \nYangilanishlarni /updatesOff buyrugʻi bilan bekor qilish mumkin."""
 }
+
+
+
+menu_text = {
+    "ru": "Меню📄",
+    "uz": "Menu📄"
+}
