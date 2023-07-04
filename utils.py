@@ -4,7 +4,7 @@ from datetime import datetime
 
 BASE_URl = "https://cbu.uz/ru/arkhiv-kursov-valyut/json"
 PROXY = {
-    "http": "http://proxy.server:3128"
+    "https": "https://proxy.server:3128"
 }
 
 
