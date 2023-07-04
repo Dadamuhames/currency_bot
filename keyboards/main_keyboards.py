@@ -40,6 +40,11 @@ def currencies_keyboard(currensies, lang):
     saved_text = texts.saved_btn.get(lang)
     menu_text = texts.menu_text.get(lang)
 
+    first_row = [types.KeyboardButton(
+        text=saved_text), types.KeyboardButton(text=menu_text)]
+
+    reply_keyboard.row(*first_row)
+
     for i in range(0, len(currensies), 2):
         row = []
 
@@ -72,11 +77,6 @@ def currencies_keyboard(currensies, lang):
 
 
         reply_keyboard.row(*row)
-    
-    last_row = [types.KeyboardButton(text=saved_text), types.KeyboardButton(text=menu_text)]
-
-    reply_keyboard.row(*last_row)
-
 
     return reply_keyboard
 
