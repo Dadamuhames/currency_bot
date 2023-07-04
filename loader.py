@@ -9,10 +9,10 @@ load_dotenv()
 # bot token from env
 BOT_TOKEN=os.environ.get('BOT_TOKEN')
 logging.basicConfig(level=logging.INFO)
-PROXY_URL = "http://proxy.server:3128"
+# PROXY_URL = "http://proxy.server:3128"
 
 
 
 # init main bot
-bot = Bot(token=BOT_TOKEN, parse_mode="markdown", proxy=PROXY_URL)
+bot = Bot(token=BOT_TOKEN, parse_mode="markdown" )#, proxy=PROXY_URL)
 dp = Dispatcher(bot)

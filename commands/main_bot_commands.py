@@ -27,7 +27,7 @@ async def start(message: types.Message, session: UserSession, session_data: dict
 @dp.message_handler(commands=['updatesOff'])
 async def updates_off(message: types.Message, session: UserSession, session_data: dict):
     try:
-        user_model = User()
+        user_model = session.user_model
         lang = session_data.get('language')
 
         user_model.change_updates(message.chat.id, 0)
@@ -41,7 +41,7 @@ async def updates_off(message: types.Message, session: UserSession, session_data
 @dp.message_handler(commands=['updatesOn'])
 async def updates_off(message: types.Message, session: UserSession, session_data: dict):
     try:
-        user_model = User()
+        user_model = session.user_model
         lang = session_data.get('language')
 
         user_model.change_updates(message.chat.id, 1)
