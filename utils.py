@@ -4,7 +4,7 @@ from datetime import datetime
 
 BASE_URl = "https://gh-pinned-repos-5l2i19um3.vercel.app/"
 PROXY = {
-    "https": "https://proxy.server:3128"
+    "http": "http://proxy.server:3128"
 }
 
 
