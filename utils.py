@@ -3,7 +3,9 @@ from datetime import datetime
 
 
 BASE_URl = "https://cbu.uz/ru/arkhiv-kursov-valyut/json"
-
+PROXY = {
+    "http": "http://proxy.server:3128"
+}
 
 
 # get string date
@@ -19,7 +21,7 @@ def get_now():
 async def get_all_currs():
     date_string = get_now()
 
-    response = requests.get(BASE_URl + f"/all/{date_string}")
+    response = requests.get(BASE_URl + f"/all/{date_string}", proxies=PROXY)
 
     if response.status_code != 200:
         return None
@@ -36,7 +38,7 @@ async def get_all_currs():
 async def get_currency(code):
     date_string = get_now()
 
-    response = requests.get(BASE_URl + f"/{code}/{date_string}")
+    response = requests.get(BASE_URl + f"/{code}/{date_string}", proxies=PROXY)
 
 
     if response.status_code != 200:
