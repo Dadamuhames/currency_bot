@@ -11,11 +11,11 @@ MYSQL_DB = os.environ.get("MYSQL_DB")
 MYSQL_HOST = os.environ.get("MYSQL_HOST")
 
 
-mydb = mysql.connector.connect(
-    host=MYSQL_HOST,
-    user=MYSQL_USER,
-    password=MYSQL_PASSWORD,
-    database=MYSQL_DB
-)
+# mydb = mysql.connector.connect(
+#     host=MYSQL_HOST,
+#     user=MYSQL_USER,
+#     password=MYSQL_PASSWORD,
+#     database=MYSQL_DB
+# )
 
-mycursor = mydb.cursor()
+# mycursor = mydb.cursor()

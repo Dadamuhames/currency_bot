@@ -14,7 +14,7 @@ class BaseChatModel:
         )
 
 
-        self.mycursor = mydb.cursor()
+        self.mycursor = self.mydb.cursor()
 
     # list items
     def list(self):
@@ -52,9 +52,10 @@ class BaseChatModel:
     def delete_user(self, chat_id):
         sql = f"DELETE FROM {self.table} WHERE chat_id = {chat_id}"
         self.mycursor.execute(sql)
+
+        self.mydb.commit()
         self.mycursor.close()
 
-        mydb.commit()
 
 
 
