@@ -5,24 +5,12 @@ from .db_config import *
 class BaseChatModel:
     table = "" # database table name
 
-    # def __init__(self):
-    #     self.mydb = mysql.connector.connect(
-    #         host=MYSQL_HOST,
-    #         user=MYSQL_USER,
-    #         password=MYSQL_PASSWORD,
-    #         database=MYSQL_DB
-    #     )
-
-
-    #     self.mycursor = self.mydb.cursor()
-
     # list items
     def list(self):
         sql = f"SELECT * FROM {self.table}"
         mycursor.execute(sql)
         queryset = mycursor.fetchall()
 
-        mycursor.close()
         return queryset
     
 
@@ -34,7 +22,6 @@ class BaseChatModel:
 
         result = mycursor.fetchone()
 
-        mycursor.close()
         return result
 
 
@@ -44,7 +31,6 @@ class BaseChatModel:
         val = (chat_id, )
         mycursor.execute(sql, val)
         mydb.commit()
-        mycursor.close()
 
 
 
@@ -54,7 +40,6 @@ class BaseChatModel:
         mycursor.execute(sql)
 
         mydb.commit()
-        mycursor.close()
 
 
 
@@ -68,7 +53,6 @@ class User(BaseChatModel):
         sql = f"""UPDATE {self.table} SET language = %s WHERE chat_id = %s"""
         mycursor.execute(sql, (lang, chat_id))
         mydb.commit()
-        mycursor.close()
 
 
 
@@ -78,7 +62,6 @@ class User(BaseChatModel):
         mycursor.execute(sql, (currencies, chat_id))
 
         mydb.commit()
-        mycursor.close()
 
 
     
@@ -88,7 +71,6 @@ class User(BaseChatModel):
         mycursor.execute(sql, (updates, chat_id))
 
         mydb.commit()
-        mycursor.close()
 
 
 
@@ -97,7 +79,6 @@ class User(BaseChatModel):
         sql = f"SELECT chat_id FROM {self.table} WHERE updates = 1"
         mycursor.execute(sql)
         queryset = mycursor.fetchall()
-        mycursor.close()
 
         return queryset
 

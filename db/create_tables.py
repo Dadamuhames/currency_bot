@@ -44,4 +44,3 @@ def create_admins_table():
 def create_all_tables():
     create_users_table() # create user tables
     create_groups_table() # create groups table
-    mycursor.close()
