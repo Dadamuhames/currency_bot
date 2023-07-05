@@ -22,15 +22,6 @@ async def on_startup(_):
 if __name__ == '__main__':
     import middlewares
 
-    mydb = mysql.connector.connect(
-        host=MYSQL_HOST,
-        user=MYSQL_USER,
-        password=MYSQL_PASSWORD,
-        database=MYSQL_DB
-    )
-
-    mycursor = mydb.cursor()
-
-    create_all_tables(mycursor)
+    create_all_tables()
     middlewares.setup(dp)
     executor.start_polling(dp, skip_updates=True, on_startup=on_startup)

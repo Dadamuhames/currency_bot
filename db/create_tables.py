@@ -1,5 +1,7 @@
+from .db_config import mycursor
+
 # create users table
-def create_users_table(mycursor):
+def create_users_table():
     query = """
         CREATE TABLE IF NOT EXISTS `users` (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -14,7 +16,7 @@ def create_users_table(mycursor):
 
 
 # create groups table
-def create_groups_table(mycursor):
+def create_groups_table():
     query = """
         CREATE TABLE IF NOT EXISTS `groups` (
             `id` INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -27,7 +29,7 @@ def create_groups_table(mycursor):
 
 
 # create admins table
-def create_admins_table(mycursor):
+def create_admins_table():
     query = """
         CREATE TABLE IF NOT EXISTS admins (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -39,7 +41,7 @@ def create_admins_table(mycursor):
 
 
 # create all tables
-def create_all_tables(mycursor):
-    create_users_table(mycursor) # create user tables
-    create_groups_table(mycursor) # create groups table
+def create_all_tables():
+    create_users_table() # create user tables
+    create_groups_table() # create groups table
     mycursor.close()
