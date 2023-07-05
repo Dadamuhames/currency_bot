@@ -1,8 +1,6 @@
 from aiogram import types
 from aiogram.dispatcher.middlewares import BaseMiddleware
 from user_session import UserSession
-from db import MYSQL_DB, MYSQL_HOST, MYSQL_PASSWORD, MYSQL_USER, mycursor
-import mysql.connector
 
 
 
