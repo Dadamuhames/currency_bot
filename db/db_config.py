@@ -15,8 +15,8 @@ MYSQL_HOST = os.environ.get("MYSQL_HOST")
 
 class DataBase:
     def __init__(self):
-        self.connection = None
-        self.cursor = None
+        self.connection = self.create_connection()
+        self.cursor = self.connection.cursor()
 
     def create_connection(self):
         mydb = mysql.connector.connect(
