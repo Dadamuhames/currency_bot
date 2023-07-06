@@ -39,6 +39,7 @@ class DataBase:
                 cursor.execute(query)
         
         except mysql.connector.errors.DatabaseError:
+            self.connection.close()
             self.connection = self.create_connection()
             self.cursor = self.connection.cursor()
             return self.execute(query, values=values)
