@@ -1,5 +1,5 @@
 import json
-from db import User, mycursor
+from db import User
 
 
 

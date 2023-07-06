@@ -1,4 +1,4 @@
-from .db_config import mycursor
+from .db_config import db
 
 # create users table
 def create_users_table():
@@ -12,7 +12,7 @@ def create_users_table():
         )
     """
 
-    mycursor.execute(query)
+    db.execute(query)
 
 
 # create groups table
@@ -25,7 +25,7 @@ def create_groups_table():
         )
     """
 
-    mycursor.execute(query)
+    db.execute(query)
 
 
 # create admins table
@@ -36,7 +36,7 @@ def create_admins_table():
             chat_id VARCHAR(255) NOT NULL UNIQUE
         )
     """
-    mycursor.execute(query)
+    db.execute(query)
 
 
 

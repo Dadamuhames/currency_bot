@@ -11,11 +11,37 @@ MYSQL_DB = os.environ.get("MYSQL_DB")
 MYSQL_HOST = os.environ.get("MYSQL_HOST")
 
 
-mydb = mysql.connector.connect(
-    host=MYSQL_HOST,
-    user=MYSQL_USER,
-    password=MYSQL_PASSWORD,
-    database=MYSQL_DB
-)
 
-mycursor = mydb.cursor()
+
+class DataBase:
+    def __init__(self):
+        self.connection = None
+        self.cursor = None
+
+    def create_connection(self):
+        mydb = mysql.connector.connect(
+            host=MYSQL_HOST,
+            user=MYSQL_USER,
+            password=MYSQL_PASSWORD,
+            database=MYSQL_DB
+        )
+
+        return mydb
+    
+    
+    def execute(self, query, values=None):
+        try:
+            cursor = self.cursor
+
+            if values:
+                cursor.execute(query, values)
+            else:
+                cursor.execute(query)
+        
+        except mysql.connector.errors.DatabaseError:
+            self.connection = self.create_connection()
+            self.cursor = self.connection.cursor()
+            return self.execute(query, values=values)
+
+
+db = DataBase()
