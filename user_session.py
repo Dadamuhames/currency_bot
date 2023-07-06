@@ -24,7 +24,6 @@ class UserSession:
             curent_session['currencies'] = json.loads(curent_user[3]) if curent_user[3] else []
         except Exception as e:
             print("ERROR!", e)
-            raise e
 
         return curent_session
     
@@ -42,7 +41,6 @@ class UserSession:
 
         except Exception as e:
             print('ERROR!', e)
-            raise e
 
         return curent_session
 
@@ -61,7 +59,6 @@ class UserSession:
 
         except Exception as e:
             print("ERROR!", e)
-            raise e
 
         return curent_session
     

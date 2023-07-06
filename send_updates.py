@@ -50,5 +50,4 @@ async def broadcast_saveds():
 
     except Exception as e:
         print("ERROR!", e)
-        raise e
 

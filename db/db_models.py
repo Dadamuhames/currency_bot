@@ -32,6 +32,13 @@ class BaseChatModel:
         db.execute(sql, val)
         db.connection.commit()
 
+        user_query = f"""select * from {self.table} where `PK`=LAST_INSERT_ID();"""
+        db.execute(user_query)
+
+        user = db.cursor.fetchone()
+
+        return user
+
 
 
     # delete item
@@ -72,6 +79,14 @@ class User(BaseChatModel):
 
         db.connection.commit()
 
+
+    # filter
+    def filter(self, field, value):
+        sql = f"SELECT chat_id FROM {self.table} WHERE {field} = {value}"
+        db.execute(sql)
+        queryset = db.cursor.fetchall()
+
+        return queryset
 
 
     # get updates active
